@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Registrar Manutenção - AuraAuto</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-variant": "#e4e2e2",
+                      "surface-bright": "#fbf9f9",
+                      "surface": "#fbf9f9",
+                      "secondary-container": "#dcdddd",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-fixed": "#1a1c1c",
+                      "on-tertiary-fixed": "#1a1c1c",
+                      "on-secondary-container": "#5f6161",
+                      "background": "#fbf9f9",
+                      "tertiary-fixed-dim": "#c6c6c6",
+                      "surface-container-highest": "#e4e2e2",
+                      "secondary": "#5d5f5f",
+                      "on-secondary-fixed-variant": "#454747",
+                      "primary": "#112a3f",
+                      "surface-container-low": "#f5f3f3",
+                      "on-surface": "#1b1c1c",
+                      "outline": "#73777d",
+                      "outline-variant": "#c3c7cd",
+                      "surface-dim": "#dbdada",
+                      "on-surface-variant": "#43474c",
+                      "tertiary": "#272829",
+                      "text-primary": "#2C2C2C",
+                      "primary-container": "#294056",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed": "#e2e2e2",
+                      "success-moss": "#10B981",
+                      "inverse-surface": "#303031",
+                      "on-secondary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "surface-container": "#efeded",
+                      "secondary-fixed-dim": "#c6c6c7",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-tint": "#4a6078",
+                      "on-primary-fixed": "#021d32",
+                      "on-primary-fixed-variant": "#32495f",
+                      "inverse-on-surface": "#f2f0f0",
+                      "on-tertiary-fixed-variant": "#454747",
+                      "error-container": "#ffdad6",
+                      "on-error": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "text-secondary": "#6B6B6B",
+                      "secondary-fixed": "#e2e2e2",
+                      "on-tertiary-container": "#a8a9a9",
+                      "surface-container-high": "#e9e8e8",
+                      "primary-fixed-dim": "#b1c9e4",
+                      "inverse-primary": "#b1c9e4",
+                      "on-primary-container": "#94acc6",
+                      "alert-terracotta": "#EF4444",
+                      "info-slate": "#64748B",
+                      "tertiary-container": "#3d3e3f",
+                      "primary-fixed": "#cee5ff",
+                      "on-background": "#1b1c1c"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "section-gap-md": "80px",
+                      "max-width": "1440px",
+                      "margin-desktop": "48px",
+                      "section-gap-lg": "128px",
+                      "gutter": "32px",
+                      "margin-mobile": "24px"
+              },
+              "fontFamily": {
+                      "label-md": [
+                              "Manrope"
+                      ],
+                      "body-lg": [
+                              "Manrope"
+                      ],
+                      "headline-sm": [
+                              "Manrope"
+                      ],
+                      "headline-md": [
+                              "Manrope"
+                      ],
+                      "headline-lg": [
+                              "Manrope"
+                      ],
+                      "headline-lg-mobile": [
+                              "Manrope"
+                      ],
+                      "meta-sm": [
+                              "Manrope"
+                      ]
+              },
+              "fontSize": {
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "0.06em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.7",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-sm": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-md": [
+                              "36px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "56px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "44px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "meta-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #fbf9f9;
+            color: #1b1c1c;
+        }
+        
+        /* Subtle interactive depth as per style guide */
+        .hover-lift {
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        /* Form input styling */
+        .form-input-minimal {
+            border: 1px solid #c3c7cd;
+            border-radius: 8px;
+            background-color: #ffffff;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        
+        .form-input-minimal:focus {
+            border-color: #112a3f;
+            box-shadow: 0 0 0 2px rgba(17, 42, 63, 0.1);
+            outline: none;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex font-body-lg text-body-lg">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-surface-container-lowest dark:bg-surface-container-highest border-r border-outline-variant dark:border-outline py-8 space-y-6 z-20">
+<!-- Header / Vehicle Avatar -->
+<div class="px-5 mb-8 flex flex-col items-center">
+<div class="w-20 h-20 rounded-full overflow-hidden mb-4 border border-outline-variant">
+<img alt="Vehicle Avatar" class="w-full h-full object-cover" data-alt="A macro shot of a sleek, silver metallic car emblem reflecting soft, diffused studio lighting. The minimal composition highlights the curves and precision engineering of a high-end luxury vehicle. The background is a clean, bright white surface, emphasizing the metallic sheen and sophisticated modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtOk4nV0SinDuBkM25Phx9Dn8ohR_9_k_ZwW6TEv3NwUsnarVpnWjWrsBAYBGe6nPNwur9Q7wEXIht3C1b5s8wLOjIE5rFxDExxw65_mmE2svIQ831iS_NjU7dJjQQ9NzXeDD0iqJ2wUSNu5F8VOFM-zIXgbXL9MJReAItohIdlOZdH6Hz5JOvBYFmliPES_eP_bs7tXqYGgeD1v6HjVUxTBF3sqokw5VovMuMv-4mC87ZsmVQhtfT"/>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-primary dark:text-primary-fixed-dim text-center">BMW M3 Competition</h2>
+<p class="font-meta-sm text-meta-sm text-on-surface-variant dark:text-surface-variant text-center mt-1">ABC-1234 • 12.450 km</p>
+<button class="mt-6 w-full bg-primary text-on-primary py-3 px-6 rounded-lg font-label-md text-label-md hover:bg-opacity-90 transition-all duration-200 shadow-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" style="font-size: 18px;">add</span>
+                Adicionar Manutenção
+            </button>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 overflow-y-auto w-full">
+<ul class="space-y-2 w-full">
+<li>
+<a class="flex items-center gap-4 py-3 text-on-surface-variant dark:text-surface-variant pl-5 hover:bg-surface-container-low dark:hover:bg-surface-dim transition-all duration-200" href="#">
+<span class="material-symbols-outlined">directions_car</span>
+<span class="font-label-md text-label-md tracking-wider uppercase">Meus Veículos</span>
+</a>
+</li>
+<li>
+<!-- Active State: Maintenance -->
+<a class="flex items-center gap-4 py-3 text-primary dark:text-primary-fixed font-bold border-l-4 border-primary dark:border-primary-fixed pl-4 bg-surface-container-low" href="#">
+<span class="material-symbols-outlined">build</span>
+<span class="font-label-md text-label-md tracking-wider uppercase">Manutenções</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 py-3 text-on-surface-variant dark:text-surface-variant pl-5 hover:bg-surface-container-low dark:hover:bg-surface-dim transition-all duration-200" href="#">
+<span class="material-symbols-outlined">ev_station</span>
+<span class="font-label-md text-label-md tracking-wider uppercase">Centros Automotivos</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 py-3 text-on-surface-variant dark:text-surface-variant pl-5 hover:bg-surface-container-low dark:hover:bg-surface-dim transition-all duration-200" href="#">
+<span class="material-symbols-outlined">local_gas_station</span>
+<span class="font-label-md text-label-md tracking-wider uppercase">Abastecimentos</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 py-3 text-on-surface-variant dark:text-surface-variant pl-5 hover:bg-surface-container-low dark:hover:bg-surface-dim transition-all duration-200" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-md text-label-md tracking-wider uppercase">Documentos</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- Footer Links -->
+<div class="mt-auto px-0 w-full pt-6 border-t border-outline-variant dark:border-outline">
+<ul class="space-y-2 w-full">
+<li>
+<a class="flex items-center gap-4 py-3 text-on-surface-variant dark:text-surface-variant pl-5 hover:bg-surface-container-low dark:hover:bg-surface-dim transition-all duration-200" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-label-md text-label-md tracking-wider uppercase">Suporte</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 py-3 text-on-surface-variant dark:text-surface-variant pl-5 hover:bg-surface-container-low dark:hover:bg-surface-dim transition-all duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md tracking-wider uppercase">Sair</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 relative min-h-screen">
+<!-- TopAppBar Mobile Only (Simplified for forms) -->
+<div class="md:hidden flex items-center justify-between p-margin-mobile border-b border-outline-variant bg-surface">
+<button class="text-primary p-2">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm text-primary">Registrar Manutenção</h1>
+<div class="w-8"></div> <!-- Spacer -->
+</div>
+<!-- Content Canvas -->
+<div class="w-full max-w-[800px] mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-24">
+<!-- Page Header -->
+<div class="mb-12 hidden md:block">
+<h1 class="font-headline-lg text-headline-lg text-primary mb-2">Registrar Manutenção</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Registre serviços realizados para manter o histórico e controle de despesas do seu veículo sempre atualizados.</p>
+</div>
+<!-- Form Container -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 md:p-10 shadow-sm hover-lift">
+<form class="space-y-8">
+<!-- Section: Service Details -->
+<div class="space-y-6">
+<h3 class="font-headline-sm text-headline-sm text-primary border-b border-outline-variant pb-4">Detalhes do Serviço</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Service Type -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-on-surface" for="service-type">Tipo de Serviço</label>
+<div class="relative">
+<select class="w-full form-input-minimal py-3 pl-4 pr-10 appearance-none font-body-lg text-body-lg text-on-surface bg-surface-bright" id="service-type">
+<option disabled="" selected="" value="">Selecione o tipo de serviço...</option>
+<option value="oil_change">Troca de Óleo e Filtro</option>
+<option value="tire_rotation">Alinhamento e Balanceamento</option>
+<option value="brake_service">Revisão de Freios</option>
+<option value="fluid_check">Fluidos e Arrefecimento</option>
+<option value="major_service">Revisão Periódica / Concessionária</option>
+<option value="other">Outros Serviços</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-outline">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Date Picker -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-on-surface" for="service-date">Data do Serviço</label>
+<div class="relative">
+<input class="w-full form-input-minimal py-3 pl-4 pr-10 font-body-lg text-body-lg text-on-surface bg-surface-bright" id="service-date" placeholder="dd/mm/aaaa" type="date"/>
+</div>
+</div>
+</div>
+<!-- Provider / Notes (Spanning full width) -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-on-surface" for="provider">Local / Centro Automotivo</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 flex items-center pl-4 text-outline">
+<span class="material-symbols-outlined">storefront</span>
+</span>
+<input class="w-full form-input-minimal py-3 pl-12 pr-4 font-body-lg text-body-lg text-on-surface bg-surface-bright placeholder-outline-variant" id="provider" placeholder="ex: Concessionária Autorizada ou Oficina" type="text"/>
+</div>
+</div>
+</div>
+<!-- Section: Metrics & Cost -->
+<div class="space-y-6 pt-4">
+<h3 class="font-headline-sm text-headline-sm text-primary border-b border-outline-variant pb-4">Quilometragem &amp; Valores</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Current Mileage -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-on-surface" for="mileage">Quilometragem Atual</label>
+<div class="relative">
+<input class="w-full form-input-minimal py-3 pl-4 pr-12 font-body-lg text-body-lg text-on-surface bg-surface-bright placeholder-outline-variant" id="mileage" placeholder="12.450" type="number"/>
+<div class="absolute inset-y-0 right-0 flex items-center pr-4 text-outline">
+<span class="font-meta-sm text-meta-sm">km</span>
+</div>
+</div>
+</div>
+<!-- Total Cost -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-on-surface" for="cost">Custo Total</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 flex items-center pl-4 text-outline font-body-lg text-body-lg">
+R$
+</span>
+<input class="w-full form-input-minimal py-3 pl-12 pr-4 font-body-lg text-body-lg text-on-surface bg-surface-bright placeholder-outline-variant" id="cost" placeholder="0,00" step="0.01" type="number"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Notes / Description -->
+<div class="space-y-2 pt-4">
+<label class="block font-label-md text-label-md text-on-surface" for="notes">Observações Adicionais</label>
+<textarea class="w-full form-input-minimal py-3 px-4 font-body-lg text-body-lg text-on-surface bg-surface-bright placeholder-outline-variant resize-y" id="notes" placeholder="Detalhe peças substituídas, recomendações do mecânico ou observações gerais..." rows="4"></textarea>
+</div>
+<!-- Form Actions -->
+<div class="flex flex-col-reverse md:flex-row justify-end items-center gap-4 pt-8 border-t border-outline-variant mt-8">
+<button class="w-full md:w-auto px-8 py-3.5 rounded-lg border border-primary text-primary font-label-md text-label-md tracking-wider uppercase hover:bg-surface-container-low transition-colors duration-250" type="button">
+                            Cancelar
+                        </button>
+<button class="w-full md:w-auto px-8 py-3.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md tracking-wider uppercase hover:opacity-90 transition-opacity duration-250 shadow-sm flex items-center justify-center gap-2" type="submit">
+<span class="material-symbols-outlined" style="font-size: 18px;">save</span>
+                            Salvar Registro
+                        </button>
+</div>
+</form>
+</div>
+</div>
+</main>
+</body></html>

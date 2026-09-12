@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AuraAuto - Histórico de Manutenções</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e4e2e2",
+                        "surface-bright": "#fbf9f9",
+                        "surface": "#fbf9f9",
+                        "secondary-container": "#dcdddd",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-secondary-container": "#5f6161",
+                        "background": "#fbf9f9",
+                        "tertiary-fixed-dim": "#c6c6c6",
+                        "surface-container-highest": "#e4e2e2",
+                        "secondary": "#5d5f5f",
+                        "on-secondary-fixed-variant": "#454747",
+                        "primary": "#112a3f",
+                        "surface-container-low": "#f5f3f3",
+                        "on-surface": "#1b1c1c",
+                        "outline": "#73777d",
+                        "outline-variant": "#c3c7cd",
+                        "surface-dim": "#dbdada",
+                        "on-surface-variant": "#43474c",
+                        "tertiary": "#272829",
+                        "text-primary": "#2C2C2C",
+                        "primary-container": "#294056",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#e2e2e2",
+                        "success-moss": "#10B981",
+                        "inverse-surface": "#303031",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#efeded",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#4a6078",
+                        "on-primary-fixed": "#021d32",
+                        "on-primary-fixed-variant": "#32495f",
+                        "inverse-on-surface": "#f2f0f0",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "text-secondary": "#6B6B6B",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-tertiary-container": "#a8a9a9",
+                        "surface-container-high": "#e9e8e8",
+                        "primary-fixed-dim": "#b1c9e4",
+                        "inverse-primary": "#b1c9e4",
+                        "on-primary-container": "#94acc6",
+                        "alert-terracotta": "#EF4444",
+                        "info-slate": "#64748B",
+                        "tertiary-container": "#3d3e3f",
+                        "primary-fixed": "#cee5ff",
+                        "on-background": "#1b1c1c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "section-gap-md": "80px",
+                        "max-width": "1440px",
+                        "margin-desktop": "48px",
+                        "section-gap-lg": "128px",
+                        "gutter": "32px",
+                        "margin-mobile": "24px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "meta-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "1.5", "letterSpacing": "0.06em", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "1.7", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "500" }],
+                        "headline-md": ["36px", { "lineHeight": "1.3", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-lg": ["56px", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["44px", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "meta-sm": ["14px", { "lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-lg text-body-lg text-on-surface h-full flex antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-surface-container-lowest border-r border-outline-variant z-40 py-8 space-y-6">
+<div class="px-5 mb-4">
+<div class="flex items-center space-x-4 mb-6">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-outline-variant">
+<img alt="Vehicle Avatar" class="w-full h-full object-cover" data-alt="A sleek, modern avatar image representing a high-performance luxury vehicle. The image should feature a close-up, abstract detail of a car's polished metal surface reflecting a serene, light-grey environment. The aesthetic is sophisticated, minimalist, and corporate, emphasizing premium automotive design in a bright, airy setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgO08cwAQ4lFMv6RZgljZfiqOl-eI0dj5-a3X3rhdcfw84Ohrzs2axCV8PmEIr6L_UI7f2kI7NzcUUIXzqY_tlYZrSFmNHwQ6JylM_GqCtBKX0OgsNVAtFAWQ6tNQBMNNfz5vfpudkT3PALqM7hf_ozswaYqlXC4EzCRSsuDWnYP5C-ZA0lSDhP5PehDnnJFM9ieI2UXSpRBNvn9i8iJ25q3WArw9WGVP8NGVAEI4WzokQLcUX0Jqo"/>
+</div>
+<div>
+<h2 class="font-headline-sm text-[16px] font-bold text-primary leading-tight">BMW M3 Competition</h2>
+<p class="font-meta-sm text-meta-sm text-on-surface-variant">ABC-1234 • 12.450 km</p>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary py-[0.875rem] px-8 rounded-lg font-label-md text-label-md hover:bg-primary-container transition-colors duration-250 flex items-center justify-center space-x-2">
+<span class="material-symbols-outlined">add</span>
+<span>Adicionar Manutenção</span>
+</button>
+</div>
+<div class="flex-1 flex flex-col space-y-2 w-full">
+<a class="flex items-center space-x-4 py-3 text-on-surface-variant pl-5 hover:bg-surface-container-low transition-all duration-200" href="#">
+<span class="material-symbols-outlined">directions_car</span>
+<span class="font-label-md text-label-md">Meus Veículos</span>
+</a>
+<a class="flex items-center space-x-4 py-3 text-primary font-bold border-l-4 border-primary pl-4 translate-x-1 transition-transform bg-surface-container-low" href="#">
+<span class="material-symbols-outlined filled">build</span>
+<span class="font-label-md text-label-md">Manutenções</span>
+</a>
+<a class="flex items-center space-x-4 py-3 text-on-surface-variant pl-5 hover:bg-surface-container-low transition-all duration-200" href="#">
+<span class="material-symbols-outlined">ev_station</span>
+<span class="font-label-md text-label-md">Centros Automotivos</span>
+</a>
+<a class="flex items-center space-x-4 py-3 text-on-surface-variant pl-5 hover:bg-surface-container-low transition-all duration-200" href="#">
+<span class="material-symbols-outlined">local_gas_station</span>
+<span class="font-label-md text-label-md">Abastecimentos</span>
+</a>
+<a class="flex items-center space-x-4 py-3 text-on-surface-variant pl-5 hover:bg-surface-container-low transition-all duration-200" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-md text-label-md">Documentos</span>
+</a>
+</div>
+<div class="mt-auto px-5 w-full flex flex-col space-y-2">
+<a class="flex items-center space-x-4 py-3 text-on-surface-variant pl-5 hover:bg-surface-container-low transition-all duration-200" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-label-md text-label-md">Suporte</span>
+</a>
+<a class="flex items-center space-x-4 py-3 text-on-surface-variant pl-5 hover:bg-surface-container-low transition-all duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Sair</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 bg-surface min-h-screen flex flex-col pb-section-gap-md relative">
+<!-- Top App Bar (Mobile Only / Minimal Header Desktop) -->
+<header class="md:hidden flex justify-between items-center w-full px-margin-mobile py-4 bg-surface border-b border-outline-variant sticky top-0 z-30">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">AuraAuto</h1>
+<div class="flex items-center space-x-4 text-primary">
+<span class="material-symbols-outlined">notifications</span>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-variant">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A small circular avatar image suitable for a mobile navigation bar. It shows a sleek, modern car wheel in a minimalist setting. The aesthetic should match a high-end, sophisticated corporate design system with cool grey tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkvViUCYbChPpuI2_hoShvqKUjTBCH38LwUosdzkDSU1a6s6jWLejeu2MgBtlehOSzePvp-4CX6c1ZYh6N2b4lFhXHKEsdtXLHovyvLSe1CucuQdZh21JhM_CmVf7HWzchVpGCSouyGR4hRiDMtVILXEguI5Dj2ivJCbqkL6cYu2l-73FMHyfjTnTxoStW15V9BZsM-5H3DbBVcyC7U0Tzy_Fd7pQaQiShgh-18_3ocH0kxa33C2L9"/>
+</div>
+</div>
+</header>
+<div class="px-margin-mobile md:px-margin-desktop py-12 max-w-max-width mx-auto w-full flex-1">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+<div>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-text-primary mb-2">Histórico de Manutenções</h1>
+<p class="text-text-secondary">Acompanhe e consulte o histórico de manutenções realizadas no seu veículo.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-3 rounded-lg border border-outline-variant bg-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-shadow text-on-surface placeholder:text-tertiary-fixed-dim w-full sm:w-64" placeholder="Buscar serviços..." type="text"/>
+</div>
+<button class="flex items-center justify-center space-x-2 px-6 py-3 rounded-lg border border-outline-variant bg-surface hover:bg-surface-container-low transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-md text-label-md">Filtrar por Data</span>
+</button>
+</div>
+</div>
+<!-- Bento Layout for Analytics & History -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Summary Cards (Side/Top) -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<div class="bg-surface-container-lowest rounded-[12px] border border-outline-variant p-6 hover:-translate-y-1 hover:shadow-[0_2px_8px_rgba(0,0,0,0.06)] transition-all duration-300">
+<h3 class="font-meta-sm text-meta-sm text-on-surface-variant uppercase tracking-wider mb-2">Custo Total de Manutenção</h3>
+<div class="font-headline-md text-headline-md text-text-primary">R$ 4.250,00</div>
+<div class="mt-4 text-sm text-success-moss flex items-center">
+<span class="material-symbols-outlined text-[16px] mr-1">trending_down</span>
+<span>12% a menos que a média anual</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-[12px] border border-outline-variant p-6 hover:-translate-y-1 hover:shadow-[0_2px_8px_rgba(0,0,0,0.06)] transition-all duration-300 relative overflow-hidden group">
+<div class="absolute right-0 top-0 opacity-5 transition-opacity duration-500 group-hover:opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[120px]">workspace_premium</span>
+</div>
+<h3 class="font-meta-sm text-meta-sm text-on-surface-variant uppercase tracking-wider mb-2">Próxima Revisão Programada</h3>
+<div class="font-headline-sm text-headline-sm text-text-primary mb-1">Revisão de 20.000 km</div>
+<p class="text-text-secondary text-sm">Previsto em aprox. 3.500 km.</p>
+<button class="mt-6 text-primary font-label-md text-label-md hover:underline decoration-2 underline-offset-4">Agendar Revisão</button>
+</div>
+</div>
+<!-- History Table Area -->
+<div class="lg:col-span-8 bg-surface-container-lowest rounded-[12px] border border-outline-variant overflow-hidden hover:shadow-[0_2px_8px_rgba(0,0,0,0.06)] transition-shadow duration-300 flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant bg-surface-bright">
+<th class="py-4 px-6 font-label-md text-label-md text-on-surface-variant whitespace-nowrap">Data</th>
+<th class="py-4 px-6 font-label-md text-label-md text-on-surface-variant">Tipo de Serviço</th>
+<th class="py-4 px-6 font-label-md text-label-md text-on-surface-variant whitespace-nowrap">Quilometragem</th>
+<th class="py-4 px-6 font-label-md text-label-md text-on-surface-variant whitespace-nowrap">Custo</th>
+<th class="py-4 px-6 font-label-md text-label-md text-on-surface-variant">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-5 px-6 whitespace-nowrap text-text-secondary">12/10/2023</td>
+<td class="py-5 px-6 font-medium text-text-primary">Revisão Periódica e Troca de Óleo</td>
+<td class="py-5 px-6 text-text-secondary">10.120 km</td>
+<td class="py-5 px-6 text-text-secondary">R$ 450,00</td>
+<td class="py-5 px-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#ecfdf5] text-success-moss border border-[#a7f3d0]">
+                                            Concluído
+                                        </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-5 px-6 whitespace-nowrap text-text-secondary">05/06/2023</td>
+<td class="py-5 px-6 font-medium text-text-primary">Rotação e Balanceamento de Pneus</td>
+<td class="py-5 px-6 text-text-secondary">7.500 km</td>
+<td class="py-5 px-6 text-text-secondary">R$ 120,00</td>
+<td class="py-5 px-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#ecfdf5] text-success-moss border border-[#a7f3d0]">
+                                            Concluído
+                                        </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-5 px-6 whitespace-nowrap text-text-secondary">18/01/2023</td>
+<td class="py-5 px-6 font-medium text-text-primary">Inspeção Anual e Alinhamento</td>
+<td class="py-5 px-6 text-text-secondary">5.200 km</td>
+<td class="py-5 px-6 text-text-secondary">R$ 285,00</td>
+<td class="py-5 px-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#ecfdf5] text-success-moss border border-[#a7f3d0]">
+                                            Concluído
+                                        </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-5 px-6 whitespace-nowrap text-text-secondary">02/09/2022</td>
+<td class="py-5 px-6 font-medium text-text-primary">Substituição das Pastilhas de Freio (Dianteiras)</td>
+<td class="py-5 px-6 text-text-secondary">2.800 km</td>
+<td class="py-5 px-6 text-text-secondary">R$ 850,00</td>
+<td class="py-5 px-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#ecfdf5] text-success-moss border border-[#a7f3d0]">
+                                            Concluído
+                                        </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination / View All -->
+<div class="mt-auto p-4 border-t border-outline-variant flex justify-center bg-surface-bright">
+<button class="font-label-md text-label-md text-primary hover:text-primary-container transition-colors flex items-center space-x-1">
+<span>Ver Todos os Registros</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer (Shared Component Template) -->
+<footer class="w-full py-base px-margin-desktop flex flex-col md:flex-row justify-between items-center mt-auto border-t border-outline-variant bg-surface font-meta-sm text-meta-sm text-on-surface-variant transition-opacity duration-200">
+<div class="mb-4 md:mb-0">
+<span class="font-label-md text-label-md text-primary mr-4 uppercase tracking-[0.06em]">AuraAuto</span>
+                 © 2024 AuraAuto Fleet Systems. Todos os direitos reservados.
+             </div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="hover:text-primary underline hover:bg-transparent" href="#">Política de Privacidade</a>
+<a class="hover:text-primary underline hover:bg-transparent" href="#">Termos de Serviço</a>
+<a class="hover:text-primary underline hover:bg-transparent" href="#">Documentação da API</a>
+</div>
+</footer>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full bg-surface border-t border-outline-variant z-50 px-4 py-2 flex justify-between items-center">
+<a class="flex flex-col items-center justify-center p-2 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined text-[24px]">directions_car</span>
+</a>
+<a class="flex flex-col items-center justify-center p-2 text-primary border-t-2 border-primary -mt-[2px] pt-[10px]" href="#">
+<span class="material-symbols-outlined filled text-[24px]">build</span>
+</a>
+<a class="flex flex-col items-center justify-center p-2 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined text-[24px]">add_circle</span>
+</a>
+<a class="flex flex-col items-center justify-center p-2 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined text-[24px]">ev_station</span>
+</a>
+<a class="flex flex-col items-center justify-center p-2 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined text-[24px]">more_horiz</span>
+</a>
+</nav>
+</body></html>

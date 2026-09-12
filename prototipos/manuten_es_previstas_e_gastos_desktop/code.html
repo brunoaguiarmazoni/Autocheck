@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Manutenções Previstas e Gastos - AuraAuto</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e4e2e2",
+                        "surface-bright": "#fbf9f9",
+                        "surface": "#fbf9f9",
+                        "secondary-container": "#dcdddd",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-secondary-container": "#5f6161",
+                        "background": "#fbf9f9",
+                        "tertiary-fixed-dim": "#c6c6c6",
+                        "surface-container-highest": "#e4e2e2",
+                        "secondary": "#5d5f5f",
+                        "on-secondary-fixed-variant": "#454747",
+                        "primary": "#112a3f",
+                        "surface-container-low": "#f5f3f3",
+                        "on-surface": "#1b1c1c",
+                        "outline": "#73777d",
+                        "outline-variant": "#c3c7cd",
+                        "surface-dim": "#dbdada",
+                        "on-surface-variant": "#43474c",
+                        "tertiary": "#272829",
+                        "text-primary": "#2C2C2C",
+                        "primary-container": "#294056",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#e2e2e2",
+                        "success-moss": "#10B981",
+                        "inverse-surface": "#303031",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#efeded",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#4a6078",
+                        "on-primary-fixed": "#021d32",
+                        "on-primary-fixed-variant": "#32495f",
+                        "inverse-on-surface": "#f2f0f0",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "text-secondary": "#6B6B6B",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-tertiary-container": "#a8a9a9",
+                        "surface-container-high": "#e9e8e8",
+                        "primary-fixed-dim": "#b1c9e4",
+                        "inverse-primary": "#b1c9e4",
+                        "on-primary-container": "#94acc6",
+                        "alert-terracotta": "#EF4444",
+                        "info-slate": "#64748B",
+                        "tertiary-container": "#3d3e3f",
+                        "primary-fixed": "#cee5ff",
+                        "on-background": "#1b1c1c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "section-gap-md": "80px",
+                        "max-width": "1440px",
+                        "margin-desktop": "48px",
+                        "section-gap-lg": "128px",
+                        "gutter": "32px",
+                        "margin-mobile": "24px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "meta-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "1.5", "letterSpacing": "0.06em", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "1.7", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "500" }],
+                        "headline-md": ["36px", { "lineHeight": "1.3", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-lg": ["56px", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["44px", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "meta-sm": ["14px", { "lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #fbf9f9; color: #1b1c1c; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        .soft-shadow-hover:hover {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="font-body-lg text-body-lg bg-surface flex h-screen overflow-hidden">
+<!-- SideNavBar (Shared Component) -->
+<nav class="bg-surface-container-lowest dark:bg-surface-container-highest text-primary dark:text-primary-fixed-dim font-body-lg text-body-lg h-screen w-64 fixed left-0 top-0 border-r border-outline-variant dark:border-outline flex flex-col h-full py-8 space-y-6 z-50">
+<div class="px-6 mb-4">
+<div class="flex items-center space-x-3 mb-6">
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden shrink-0">
+<img alt="Avatar do Veículo" class="w-full h-full object-cover" data-alt="A macro shot of a sleek, modern car wheel rim in a light, airy studio setting, emphasizing the metallic texture and minimal design. The lighting is soft and diffused, creating a premium feel. The color palette is monochromatic with subtle hints of silver and charcoal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBedwxQqkBldIT2FraUbJW0wIxiUaFDJ6s5RAvFBuPyIk2umUImnM1wT8SDK6YG_sG690AmlwaJZFSZ3yb4hiUeqfwfcWYb83aT59Fn0HfZT9Uw7UzzPKsG1xJMK0QnD2tSuiXs5SKBEZcCUqMFw_6Nv1_BFZeJItRagQpaAATS0Mvl1F7nwxaAwhvByUnxnAeysvw5oF9p2UshwLIY1XUzBErmtNZ3TkiJmaH2YsHYhOOXiiT-W0nE"/>
+</div>
+<div>
+<h2 class="font-label-md text-label-md font-bold text-primary">BMW M3 Competition</h2>
+<p class="font-meta-sm text-meta-sm text-on-surface-variant">ABC-1234 • 20.036 km</p>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary py-[0.875rem] px-8 rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity">Adicionar Manutenção</button>
+</div>
+<div class="flex-grow flex flex-col space-y-2">
+<a class="flex items-center py-3 text-on-surface-variant dark:text-surface-variant pl-5 hover:bg-surface-container-low dark:hover:bg-surface-dim transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-4">directions_car</span>
+                Meus Veículos
+            </a>
+<!-- Active State -->
+<a class="flex items-center py-3 text-primary dark:text-primary-fixed font-bold border-l-4 border-primary dark:border-primary-fixed pl-4 bg-surface-container-low dark:bg-surface-dim" href="#">
+<span class="material-symbols-outlined mr-4" style="font-variation-settings: 'FILL' 1;">build</span>
+                Manutenções
+            </a>
+<a class="flex items-center py-3 text-on-surface-variant dark:text-surface-variant pl-5 hover:bg-surface-container-low dark:hover:bg-surface-dim transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-4">ev_station</span>
+                Centros Automotivos
+            </a>
+<a class="flex items-center py-3 text-on-surface-variant dark:text-surface-variant pl-5 hover:bg-surface-container-low dark:hover:bg-surface-dim transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-4">local_gas_station</span>
+                Abastecimentos
+            </a>
+<a class="flex items-center py-3 text-on-surface-variant dark:text-surface-variant pl-5 hover:bg-surface-container-low dark:hover:bg-surface-dim transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-4">description</span>
+                Documentos
+            </a>
+</div>
+<div class="mt-auto px-6 border-t border-outline-variant pt-4 flex flex-col space-y-2">
+<a class="flex items-center py-2 text-on-surface-variant hover:text-primary transition-colors text-meta-sm font-meta-sm" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]">help_outline</span>
+                Suporte
+            </a>
+<a class="flex items-center py-2 text-on-surface-variant hover:text-primary transition-colors text-meta-sm font-meta-sm" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]">logout</span>
+                Sair
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="ml-64 flex-1 overflow-y-auto w-full bg-surface">
+<!-- Header Section -->
+<header class="px-margin-desktop py-12 border-b border-surface-variant bg-surface-lowest">
+<div class="max-w-max-width mx-auto flex justify-between items-end">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary mb-2">Manutenções Previstas e Gastos</h1>
+<p class="text-on-surface-variant font-body-lg max-w-2xl">Acompanhe seus serviços futuros e controle as despesas do seu veículo.</p>
+</div>
+<div class="flex space-x-4">
+<button class="px-6 py-3 rounded-lg border border-outline-variant text-primary font-label-md hover:bg-surface-container-low transition-colors flex items-center">
+<span class="material-symbols-outlined mr-2">download</span> Exportar
+                    </button>
+<button class="bg-primary text-on-primary px-8 py-3 rounded-lg font-label-md hover:bg-primary-container transition-colors">
+                        Agendar Serviço
+                    </button>
+</div>
+</div>
+</header>
+<div class="px-margin-desktop py-12 max-w-max-width mx-auto grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Timeline Section (Left Column) -->
+<section class="lg:col-span-7 space-y-8">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline-md text-headline-md text-primary">Próximas Manutenções</h2>
+<div class="flex bg-surface-container-high rounded-full p-1">
+<button class="px-4 py-1 rounded-full bg-surface text-primary font-label-md shadow-sm">Data</button>
+<button class="px-4 py-1 rounded-full text-on-surface-variant font-label-md hover:text-primary">Quilometragem</button>
+</div>
+</div>
+<div class="relative border-l border-outline-variant ml-4 space-y-12 pb-12">
+<!-- Timeline Item 1 -->
+<div class="relative pl-10 group cursor-pointer">
+<div class="absolute left-[-9px] top-1 w-4 h-4 rounded-full bg-alert-terracotta border-4 border-surface shadow-sm group-hover:scale-125 transition-transform"></div>
+<div class="glass-card rounded-xl p-6 border border-outline-variant soft-shadow-hover relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-alert-terracotta"></div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-headline-sm text-primary">Substituição das Pastilhas de Freio</h3>
+<span class="bg-alert-terracotta/10 text-alert-terracotta font-label-md px-3 py-1 rounded-full text-xs">Urgente</span>
+</div>
+<p class="text-on-surface-variant mb-4 font-meta-sm">Pastilhas de freio dianteiras e traseiras no fim da vida útil. Atenção recomendada para evitar danos aos discos.</p>
+<div class="flex items-center text-meta-sm text-on-surface-variant space-x-6">
+<span class="flex items-center"><span class="material-symbols-outlined mr-1 text-[18px]">calendar_today</span> 15 Out, 2024</span>
+<span class="flex items-center"><span class="material-symbols-outlined mr-1 text-[18px]">speed</span> 20.600 km est.</span>
+<span class="flex items-center font-bold text-primary"><span class="material-symbols-outlined mr-1 text-[18px]">payments</span> ~R$ 450,00</span>
+</div>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative pl-10 group cursor-pointer">
+<div class="absolute left-[-9px] top-1 w-4 h-4 rounded-full bg-success-moss border-4 border-surface shadow-sm group-hover:scale-125 transition-transform"></div>
+<div class="bg-surface-container-lowest rounded-xl p-6 border border-outline-variant soft-shadow-hover relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-success-moss"></div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-headline-sm text-primary">Rotação e Balanceamento de Pneus</h3>
+<span class="bg-surface-container-high text-on-surface-variant font-label-md px-3 py-1 rounded-full text-xs">Agendada</span>
+</div>
+<p class="text-on-surface-variant mb-4 font-meta-sm">Manutenção preventiva regular para garantir desgaste homogêneo dos pneus.</p>
+<div class="flex items-center text-meta-sm text-on-surface-variant space-x-6">
+<span class="flex items-center"><span class="material-symbols-outlined mr-1 text-[18px]">calendar_today</span> 10 Nov, 2024</span>
+<span class="flex items-center"><span class="material-symbols-outlined mr-1 text-[18px]">speed</span> 24.100 km est.</span>
+<span class="flex items-center font-bold text-primary"><span class="material-symbols-outlined mr-1 text-[18px]">payments</span> ~R$ 80,00</span>
+</div>
+</div>
+</div>
+<!-- Timeline Item 3 -->
+<div class="relative pl-10 group cursor-pointer opacity-70">
+<div class="absolute left-[-9px] top-1 w-4 h-4 rounded-full bg-outline-variant border-4 border-surface shadow-sm group-hover:scale-125 transition-transform"></div>
+<div class="bg-surface-container-lowest rounded-xl p-6 border border-outline-variant border-dashed soft-shadow-hover">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-headline-sm text-primary">Troca de Óleo Sintético</h3>
+<span class="bg-surface-container-high text-on-surface-variant font-label-md px-3 py-1 rounded-full text-xs">Futura</span>
+</div>
+<p class="text-on-surface-variant mb-4 font-meta-sm">Substituição completa de óleo sintético e filtro.</p>
+<div class="flex items-center text-meta-sm text-on-surface-variant space-x-6">
+<span class="flex items-center"><span class="material-symbols-outlined mr-1 text-[18px]">calendar_today</span> 20 Jan, 2025</span>
+<span class="flex items-center"><span class="material-symbols-outlined mr-1 text-[18px]">speed</span> 32.000 km est.</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Cost Analysis Section (Right Column) -->
+<section class="lg:col-span-5 space-y-8">
+<h2 class="font-headline-md text-headline-md text-primary mb-6">Detalhamento de Despesas (Acumulado)</h2>
+<!-- Total Cost Card -->
+<div class="bg-primary-container text-on-primary rounded-xl p-8 relative overflow-hidden soft-shadow-hover">
+<div class="absolute right-[-20%] top-[-20%] w-64 h-64 bg-primary rounded-full opacity-20 blur-2xl"></div>
+<p class="font-label-md text-primary-fixed-dim uppercase tracking-widest mb-2">GASTO TOTAL</p>
+<div class="font-headline-lg text-headline-lg mb-4">R$ 1.240,50</div>
+<div class="flex items-center text-success-moss text-sm bg-surface/10 w-max px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-[16px] mr-1">trending_down</span> 12% a menos que no ano anterior
+                    </div>
+</div>
+<!-- Categories -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 space-y-6 soft-shadow-hover">
+<!-- Category: Repairs -->
+<div>
+<div class="flex justify-between text-meta-sm mb-2">
+<span class="font-bold text-primary flex items-center"><span class="material-symbols-outlined mr-2 text-[18px] text-alert-terracotta">build</span> Reparos</span>
+<span class="font-bold">R$ 680,00</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-alert-terracotta h-full rounded-full" style="width: 55%"></div>
+</div>
+<p class="text-xs text-on-surface-variant mt-2">55% do total gasto</p>
+</div>
+<!-- Category: Preventive -->
+<div>
+<div class="flex justify-between text-meta-sm mb-2">
+<span class="font-bold text-primary flex items-center"><span class="material-symbols-outlined mr-2 text-[18px] text-info-slate">shield</span> Preventiva</span>
+<span class="font-bold">R$ 420,50</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-info-slate h-full rounded-full" style="width: 34%"></div>
+</div>
+<p class="text-xs text-on-surface-variant mt-2">34% do total gasto</p>
+</div>
+<!-- Category: Upgrades -->
+<div>
+<div class="flex justify-between text-meta-sm mb-2">
+<span class="font-bold text-primary flex items-center"><span class="material-symbols-outlined mr-2 text-[18px] text-success-moss">stars</span> Melhorias</span>
+<span class="font-bold">R$ 140,00</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-success-moss h-full rounded-full" style="width: 11%"></div>
+</div>
+<p class="text-xs text-on-surface-variant mt-2">11% do total gasto</p>
+</div>
+</div>
+<!-- Suggested Action -->
+<div class="border border-outline-variant bg-surface-container-low rounded-xl p-6 flex items-start space-x-4">
+<span class="material-symbols-outlined text-info-slate text-3xl mt-1">lightbulb</span>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-primary mb-1">Plano de Manutenção</h4>
+<p class="font-meta-sm text-on-surface-variant mb-4">Economize até 15% nas próximas manutenções e reparos assinando o plano anual de cuidados para o seu veículo.</p>
+<button class="text-primary font-bold font-label-md border-b-2 border-primary hover:text-primary-container transition-colors">Ver Planos</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AuraAuto Fleet Systems - Gerenciamento de Veículos</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e4e2e2",
+                        "surface-bright": "#fbf9f9",
+                        "surface": "#fbf9f9",
+                        "secondary-container": "#dcdddd",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-secondary-container": "#5f6161",
+                        "background": "#fbf9f9",
+                        "tertiary-fixed-dim": "#c6c6c6",
+                        "surface-container-highest": "#e4e2e2",
+                        "secondary": "#5d5f5f",
+                        "on-secondary-fixed-variant": "#454747",
+                        "primary": "#112a3f",
+                        "surface-container-low": "#f5f3f3",
+                        "on-surface": "#1b1c1c",
+                        "outline": "#73777d",
+                        "outline-variant": "#c3c7cd",
+                        "surface-dim": "#dbdada",
+                        "on-surface-variant": "#43474c",
+                        "tertiary": "#272829",
+                        "text-primary": "#2C2C2C",
+                        "primary-container": "#294056",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#e2e2e2",
+                        "success-moss": "#10B981",
+                        "inverse-surface": "#303031",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#efeded",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#4a6078",
+                        "on-primary-fixed": "#021d32",
+                        "on-primary-fixed-variant": "#32495f",
+                        "inverse-on-surface": "#f2f0f0",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "text-secondary": "#6B6B6B",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-tertiary-container": "#a8a9a9",
+                        "surface-container-high": "#e9e8e8",
+                        "primary-fixed-dim": "#b1c9e4",
+                        "inverse-primary": "#b1c9e4",
+                        "on-primary-container": "#94acc6",
+                        "alert-terracotta": "#EF4444",
+                        "info-slate": "#64748B",
+                        "tertiary-container": "#3d3e3f",
+                        "primary-fixed": "#cee5ff",
+                        "on-background": "#1b1c1c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "section-gap-md": "80px",
+                        "max-width": "1440px",
+                        "margin-desktop": "48px",
+                        "section-gap-lg": "128px",
+                        "gutter": "32px",
+                        "margin-mobile": "24px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Manrope", "sans-serif"],
+                        "body-lg": ["Manrope", "sans-serif"],
+                        "headline-sm": ["Manrope", "sans-serif"],
+                        "headline-md": ["Manrope", "sans-serif"],
+                        "headline-lg": ["Manrope", "sans-serif"],
+                        "headline-lg-mobile": ["Manrope", "sans-serif"],
+                        "meta-sm": ["Manrope", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "1.5", "letterSpacing": "0.06em", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "1.7", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "500" }],
+                        "headline-md": ["36px", { "lineHeight": "1.3", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-lg": ["56px", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["44px", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "meta-sm": ["14px", { "lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400" }]
+                    },
+                    "boxShadow": {
+                        "whisper": "0 2px 8px rgba(0,0,0,0.06)"
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #fbf9f9; /* background */
+            color: #1b1c1c; /* on-background */
+        }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden bg-background font-body-lg text-on-background">
+<!-- SideNavBar -->
+<nav class="hidden md:flex h-screen w-64 fixed left-0 top-0 bg-surface-container-lowest border-r border-outline-variant flex-col py-8 space-y-6 z-10">
+<!-- Header / Identity -->
+<div class="px-5 mb-4">
+<h1 class="font-headline-md text-headline-md text-primary mb-1">AuraAuto</h1>
+</div>
+<div class="px-5 mb-6 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high border border-outline-variant shrink-0">
+<img alt="Vehicle Avatar" class="w-full h-full object-cover" data-alt="A macro studio shot of a high end metallic vehicle paint texture in deep teal lighting. The surface is pristine and reflective, conveying luxury and automotive excellence in a light mode setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkLGmCUNvY2Xf-BO1bSONUjanfz25Gyb6revKULGVTnENRiF-B2jS7ax-6CFcNXir__l_YOj0ocY5_t3S-JpQ31Ij0y7sOlNu8naYYwAUmH569xb8nRT1WDCAJSl1Xucga9kRbTmR6EtwyRAXd95SsNyXEG-MCTgE1IfxLKACfP0kTm7AFci9MQAwqUi_Szx7A2fNvwiL3wT3-JWmZTx7MosSlu5gSWQy6rHPKyGnTX0_5iGl0QLMp"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">BMW M3 Competition</p>
+<p class="font-meta-sm text-meta-sm text-on-surface-variant">ABC-1234 • 12.450 km</p>
+</div>
+</div>
+<!-- Primary Navigation -->
+<div class="flex-1 overflow-y-auto">
+<ul class="space-y-2">
+<li>
+<a class="flex items-center gap-3 py-3 text-primary font-bold border-l-4 border-primary pl-4 bg-surface-container-low transition-all duration-200 translate-x-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">directions_car</span>
+<span class="font-body-lg text-body-lg">Meus Veículos</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 py-3 text-on-surface-variant pl-5 hover:bg-surface-container-low transition-all duration-200" href="#">
+<span class="material-symbols-outlined">build</span>
+<span class="font-body-lg text-body-lg">Manutenções</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 py-3 text-on-surface-variant pl-5 hover:bg-surface-container-low transition-all duration-200" href="#">
+<span class="material-symbols-outlined">ev_station</span>
+<span class="font-body-lg text-body-lg">Centros Automotivos</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 py-3 text-on-surface-variant pl-5 hover:bg-surface-container-low transition-all duration-200" href="#">
+<span class="material-symbols-outlined">local_gas_station</span>
+<span class="font-body-lg text-body-lg">Abastecimentos</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 py-3 text-on-surface-variant pl-5 hover:bg-surface-container-low transition-all duration-200" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-body-lg text-body-lg">Documentos</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- CTA & Footer Nav -->
+<div class="px-5 mt-auto space-y-6">
+<button class="w-full bg-primary text-on-primary py-[0.875rem] px-[2rem] rounded-lg font-label-md text-label-md hover:bg-primary-fixed-dim hover:text-primary transition-colors duration-250 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                Adicionar Manutenção
+            </button>
+<ul class="space-y-2 border-t border-outline-variant pt-4">
+<li>
+<a class="flex items-center gap-3 py-2 text-on-surface-variant hover:text-primary transition-all duration-200" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-meta-sm text-meta-sm">Suporte</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 py-2 text-on-surface-variant hover:text-primary transition-all duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-meta-sm text-meta-sm">Sair</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 overflow-y-auto h-screen bg-background pb-section-gap-md relative">
+<!-- Top App Bar (Mobile only) -->
+<header class="md:hidden flex items-center justify-between px-margin-mobile py-4 border-b border-outline-variant bg-surface sticky top-0 z-20">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">AuraAuto</h1>
+<button class="text-primary p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<div class="max-w-max-width mx-auto px-margin-mobile md:px-gutter pt-12 md:pt-section-gap-md">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+<div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4 tracking-tight">Meus Veículos</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Gerencie seus veículos particulares. Acompanhe quilometragem, status de manutenção e prontidão de cada carro da sua garagem.</p>
+</div>
+</div>
+<!-- Vehicle Grid (Gallery Style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-gutter">
+<!-- Vehicle Card 1: BMW M3 -->
+<article class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden group hover:-translate-y-1 hover:shadow-whisper transition-all duration-300 flex flex-col h-full">
+<div class="aspect-[4/3] w-full relative overflow-hidden bg-surface-container">
+<img alt="BMW M3 Competition" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A pristine white BMW M3 Competition photographed in a minimalist, high-key studio environment. Soft, diffused overhead lighting highlights the aggressive styling and carbon fiber accents against a seamless light grey background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBthBRn01KUvFVMU0pvq-mt4kJgF5ylwamDoRp4UgFe0ITJwuagska8xSOhVDu3Kwh1xP7muQce69IZyA6lhQlTPdcuVCC4uVpM0zJcq4fuHBT9G-8v1iTFPjLNgqsVxXUHgXY98fTH4JkTJDHlH1zuA2ht1WmNCZAlGcyY9r6rrJPu4PwTLgg9wNJGGUZMX5e0gekGpupavd8xYuNjJzutCZtkCP_WFHOG0nGXJky8VGuW8PDsdMiI"/>
+<div class="absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur-sm px-3 py-1 rounded-full border border-outline-variant">
+<span class="font-label-md text-label-md text-success-moss flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                                Ativo
+                            </span>
+</div>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-1">BMW M3 Competition</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant">2023</p>
+</div>
+</div>
+<div class="mt-auto pt-6 border-t border-surface-variant grid grid-cols-2 gap-4">
+<div>
+<p class="font-meta-sm text-meta-sm text-on-surface-variant mb-1 uppercase tracking-wider text-[10px]">PLACA</p>
+<p class="font-label-md text-label-md text-on-surface">ABC-1234</p>
+</div>
+<div>
+<p class="font-meta-sm text-meta-sm text-on-surface-variant mb-1 uppercase tracking-wider text-[10px]">ODÔMETRO</p>
+<p class="font-label-md text-label-md text-on-surface">12.450 km</p>
+</div>
+</div>
+</div>
+</article>
+<!-- Vehicle Card 2: Audi A4 -->
+<article class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden group hover:-translate-y-1 hover:shadow-whisper transition-all duration-300 flex flex-col h-full">
+<div class="aspect-[4/3] w-full relative overflow-hidden bg-surface-container">
+<img alt="Audi A4" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A sleek nardo grey Audi A4 sedan parked in a vast, minimalist gallery space with smooth concrete floors. Natural sunlight streams through large unseen windows, creating sharp architectural shadows in a light, serene setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxEt5tqUEUuM8-AMOdqVivrQOkvtu2lwENyduT3aqdsAcFe1ksQcBkAhNmkep3q5masZHWo17RP389RwUU9xh3yap0RPbGwaE3XUVNfcGnbWNMGFxgo-2Ltb_PscabLmdknrRSbsd4LXlxSSVovelGshcUxM6Oj5Xv9PM2C1kpd0ElIeU2SfuDCZpqed9-iSnN8gHfvwgDU7JVkgZ--a4zyizAZZg0xQVQwCC7yeXer2GHiaykiMCd"/>
+<div class="absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur-sm px-3 py-1 rounded-full border border-outline-variant">
+<span class="font-label-md text-label-md text-success-moss flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                                Ativo
+                            </span>
+</div>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-1">Audi A4 S-Line</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant">2022</p>
+</div>
+</div>
+<div class="mt-auto pt-6 border-t border-surface-variant grid grid-cols-2 gap-4">
+<div>
+<p class="font-meta-sm text-meta-sm text-on-surface-variant mb-1 uppercase tracking-wider text-[10px]">PLACA</p>
+<p class="font-label-md text-label-md text-on-surface">XYZ-9876</p>
+</div>
+<div>
+<p class="font-meta-sm text-meta-sm text-on-surface-variant mb-1 uppercase tracking-wider text-[10px]">ODÔMETRO</p>
+<p class="font-label-md text-label-md text-on-surface">28.100 km</p>
+</div>
+</div>
+</div>
+</article>
+<!-- Vehicle Card 3: Porsche 911 -->
+<article class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden group hover:-translate-y-1 hover:shadow-whisper transition-all duration-300 flex flex-col h-full">
+<div class="aspect-[4/3] w-full relative overflow-hidden bg-surface-container">
+<img alt="Porsche 911" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A classic silver Porsche 911 Carrera captured in a soft, bright, gallery-like environment. The smooth curves of the car reflect subtle ambient light, emphasizing its timeless design against a pure white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASFqcKrdPZBK3mAZ2ZJaBD6dnU1-UnbZCjPo8p17DQ2Q-kYlZzwi70RXTA_bjnE6GZ5F6w0tisanGIH_UITaFlPXi8Ty4i6LgCwANrPpWSFJXbJ_o8HqTy_Ronev2uVjOO34qL0ojb_NB4cHobd9iN0gc6DlAVN4izc2C-biWx3zqQDuxLG-frCZe72E5HHPtN9-FhiFf7jPFDeHcJMF6tFVN4AKedUBNWKgvmpZdwZHiOvRVwDfcb"/>
+<div class="absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur-sm px-3 py-1 rounded-full border border-outline-variant">
+<span class="font-label-md text-label-md text-alert-terracotta flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">build</span>
+                                Revisão Pendente
+                            </span>
+</div>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-1">Porsche 911 Carrera</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant">2024</p>
+</div>
+</div>
+<div class="mt-auto pt-6 border-t border-surface-variant grid grid-cols-2 gap-4">
+<div>
+<p class="font-meta-sm text-meta-sm text-on-surface-variant mb-1 uppercase tracking-wider text-[10px]">PLACA</p>
+<p class="font-label-md text-label-md text-on-surface">P-911</p>
+</div>
+<div>
+<p class="font-meta-sm text-meta-sm text-on-surface-variant mb-1 uppercase tracking-wider text-[10px]">ODÔMETRO</p>
+<p class="font-label-md text-label-md text-on-surface">3.200 km</p>
+</div>
+</div>
+</div>
+</article>
+<!-- Add Vehicle Card (Bento/Gallery Style) -->
+<button class="bg-surface-container-low rounded-xl border border-dashed border-outline-variant hover:border-primary hover:bg-surface-container-highest transition-all duration-300 flex flex-col items-center justify-center min-h-[400px] h-full group">
+<div class="w-16 h-16 rounded-full bg-surface-container-lowest border border-outline-variant flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:shadow-whisper">
+<span class="material-symbols-outlined text-[32px] text-primary">add</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-2">Cadastrar Novo Veículo</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant text-center px-8">Cadastre um novo veículo para acompanhar manutenções e despesas.</p>
+</button>
+</div>
+</div>
+</main>
+</body></html>
