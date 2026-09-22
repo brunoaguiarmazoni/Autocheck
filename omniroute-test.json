@@ -1,0 +1,10 @@
+﻿{
+    "messages":  [
+                     {
+                         "content":  "Responda apenas: OmniRoute funcionando.",
+                         "role":  "user"
+                     }
+                 ],
+    "model":  "auto/best-coding",
+    "max_tokens":  50
+}
