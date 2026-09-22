@@ -1,0 +1,33 @@
+schema: spec-driven
+
+context: |
+  Project: Autocheck - Controle de Manutenção Veicular
+  Tech stack:
+    - Frontend: Angular, TypeScript, Tailwind CSS
+    - Backend: Node.js, Express, Prisma ORM, TypeScript
+    - Database: PostgreSQL 16+
+    - Testing: Vitest (Unit/Integration), Playwright (E2E), ESLint
+  Domain: Centralized application for vehicle maintenance management.
+  Architecture: Layered (controllers -> services -> repositories). Backend is the single source of truth for business rules.
+  Authentication: Custom backend implementation using JWT tokens.
+  Important Constraints:
+    - No direct database access from frontend.
+    - Exclusively use versioned migrations for database schema changes.
+
+rules:
+  proposal:
+    - Validate alignment with MVP scope (e.g., no external IDP, no AI features).
+    - Include explicit details on how changes affect testing and security.
+  tasks:
+    - Include tasks for test creation covering Happy Path, Sad Path, and Edge Cases for business rules.
+
+operations:
+  apply:
+    guidance:
+      - Enforce minimum coverage: Backend (80% lines, 70% branches) and Frontend (70% lines, 60% branches).
+      - HTTP error responses must strictly follow the Problem Details standard (RFC 7807).
+      - Ensure all code changes pass ESLint.
+  archive:
+    guidance:
+      - Verify all tests and linter pass before finalizing.
+      - Confirm architecture documentation is updated if structural changes occurred.
