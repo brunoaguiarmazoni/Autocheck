@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { VehicleService } from '../../../core/services/vehicle.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { Vehicle } from '../../../shared/models/vehicle.model';
 
 @Component({
@@ -16,7 +17,11 @@ export class VehicleListComponent implements OnInit {
   loading = true;
   error = '';
 
-  constructor(private vehicleService: VehicleService) {}
+  constructor(
+    private vehicleService: VehicleService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadVehicles();
@@ -48,5 +53,10 @@ export class VehicleListComponent implements OnInit {
         }
       });
     }
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/auth/login']);
   }
 }

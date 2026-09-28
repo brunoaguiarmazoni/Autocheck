@@ -5,6 +5,7 @@ import { authGuard } from './core/guards/auth.guard';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { VehicleListComponent } from './features/vehicles/vehicle-list/vehicle-list.component';
 import { VehicleFormComponent } from './features/vehicles/vehicle-form/vehicle-form.component';
+import { VehicleDetailComponent } from './features/vehicles/vehicle-detail/vehicle-detail.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -14,5 +15,6 @@ export const routes: Routes = [
   { path: 'vehicles', component: VehicleListComponent, canActivate: [authGuard] },
   { path: 'vehicles/new', component: VehicleFormComponent, canActivate: [authGuard] },
   { path: 'vehicles/edit/:id', component: VehicleFormComponent, canActivate: [authGuard] },
+  { path: 'vehicles/:id', component: VehicleDetailComponent, canActivate: [authGuard] },
   { path: '**', redirectTo: '/dashboard' }
 ];

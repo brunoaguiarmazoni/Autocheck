@@ -28,7 +28,7 @@ export class VehicleController {
       return;
     }
 
-    const { id } = req.params;
+    const id = req.params.id as string;
 
     try {
       const vehicle = await vehicleService.getById(id, userId);
@@ -85,7 +85,7 @@ export class VehicleController {
       return;
     }
 
-    const { id } = req.params;
+    const id = req.params.id as string;
 
     const parseResult = updateVehicleSchema.safeParse(req.body);
     if (!parseResult.success) {
@@ -126,7 +126,7 @@ export class VehicleController {
       return;
     }
 
-    const { id } = req.params;
+    const id = req.params.id as string;
 
     try {
       await vehicleService.delete(id, userId);

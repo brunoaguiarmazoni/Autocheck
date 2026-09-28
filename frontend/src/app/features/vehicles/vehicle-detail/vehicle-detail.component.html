@@ -1,0 +1,85 @@
+<div class="container mx-auto p-4 max-w-4xl md:my-12">
+  <div class="mb-8 flex items-center">
+    <a routerLink="/vehicles" class="text-primary hover:text-primary-container flex items-center gap-2 font-medium transition-colors duration-250">
+      <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      Voltar para Veículos
+    </a>
+  </div>
+
+  <div *ngIf="loading" class="flex justify-center my-12">
+    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+  </div>
+
+  <div *ngIf="error" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4" role="alert">
+    <span class="block sm:inline">{{ error }}</span>
+  </div>
+
+  <div *ngIf="vehicle && !loading" class="bg-surface-container-low rounded-xl border border-outline-variant shadow-[0_2px_8px_rgba(0,0,0,0.02)] overflow-hidden">
+    <div class="p-8 border-b border-outline-variant bg-surface-container-lowest flex justify-between items-center">
+      <div>
+        <h1 class="text-4xl font-semibold text-text-primary">{{ vehicle.brand }} {{ vehicle.model }}</h1>
+        <p class="text-lg text-text-secondary mt-2">Placa: {{ vehicle.licensePlate }} • Ano: {{ vehicle.year }}</p>
+      </div>
+      <span class="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-semibold bg-primary-container text-primary tracking-wide">
+        {{ vehicle.currentMileage | number }} km
+      </span>
+    </div>
+
+    <!-- Tabs -->
+    <div class="border-b border-outline-variant">
+      <nav class="-mb-px flex" aria-label="Tabs">
+        <button (click)="setActiveTab('details')" [ngClass]="{'border-primary text-primary font-semibold': activeTab === 'details', 'border-transparent text-text-secondary hover:text-text-primary hover:border-outline-variant': activeTab !== 'details'}" class="w-1/3 py-4 px-1 text-center border-b-2 text-base transition-colors duration-250">
+          Detalhes
+        </button>
+        <button (click)="setActiveTab('maintenances')" [ngClass]="{'border-primary text-primary font-semibold': activeTab === 'maintenances', 'border-transparent text-text-secondary hover:text-text-primary hover:border-outline-variant': activeTab !== 'maintenances'}" class="w-1/3 py-4 px-1 text-center border-b-2 text-base transition-colors duration-250">
+          Manutenções
+        </button>
+        <button (click)="setActiveTab('upcoming-maintenances')" [ngClass]="{'border-primary text-primary font-semibold': activeTab === 'upcoming-maintenances', 'border-transparent text-text-secondary hover:text-text-primary hover:border-outline-variant': activeTab !== 'upcoming-maintenances'}" class="w-1/3 py-4 px-1 text-center border-b-2 text-base transition-colors duration-250">
+          Previsões
+        </button>
+      </nav>
+    </div>
+
+    <div class="p-6">
+      <div *ngIf="activeTab === 'details'" class="space-y-6">
+        <h3 class="text-xl font-semibold text-text-primary">Informações do Veículo</h3>
+        <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
+          <div class="sm:col-span-1">
+            <dt class="text-xs font-semibold text-text-secondary uppercase tracking-widest">Marca</dt>
+            <dd class="mt-1 text-base font-medium text-text-primary">{{ vehicle.brand }}</dd>
+          </div>
+          <div class="sm:col-span-1">
+            <dt class="text-xs font-semibold text-text-secondary uppercase tracking-widest">Modelo</dt>
+            <dd class="mt-1 text-base font-medium text-text-primary">{{ vehicle.model }}</dd>
+          </div>
+          <div class="sm:col-span-1">
+            <dt class="text-xs font-semibold text-text-secondary uppercase tracking-widest">Ano</dt>
+            <dd class="mt-1 text-base font-medium text-text-primary">{{ vehicle.year }}</dd>
+          </div>
+          <div class="sm:col-span-1">
+            <dt class="text-xs font-semibold text-text-secondary uppercase tracking-widest">Placa</dt>
+            <dd class="mt-1 text-base font-medium text-text-primary">{{ vehicle.licensePlate }}</dd>
+          </div>
+          <div class="sm:col-span-1">
+            <dt class="text-xs font-semibold text-text-secondary uppercase tracking-widest">Quilometragem Atual</dt>
+            <dd class="mt-1 text-base font-medium text-text-primary">{{ vehicle.currentMileage | number }} km</dd>
+          </div>
+          <div class="sm:col-span-1">
+            <dt class="text-xs font-semibold text-text-secondary uppercase tracking-widest">Cadastrado em</dt>
+            <dd class="mt-1 text-base font-medium text-text-primary">{{ vehicle.createdAt | date:'short' }}</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div *ngIf="activeTab === 'maintenances'">
+        <app-maintenance-list [vehicleId]="vehicle.id"></app-maintenance-list>
+      </div>
+
+      <div *ngIf="activeTab === 'upcoming-maintenances'">
+        <app-upcoming-maintenance-list [vehicleId]="vehicle.id" [currentMileage]="vehicle.currentMileage"></app-upcoming-maintenance-list>
+      </div>
+    </div>
+  </div>
+</div>

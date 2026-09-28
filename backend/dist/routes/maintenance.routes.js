@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const maintenance_controller_js_1 = require("../controllers/maintenance.controller.js");
+const authMiddleware_js_1 = require("../middlewares/authMiddleware.js");
+const router = (0, express_1.Router)({ mergeParams: true });
+router.use(authMiddleware_js_1.authMiddleware);
+router.get('/', maintenance_controller_js_1.maintenanceController.listByVehicle.bind(maintenance_controller_js_1.maintenanceController));
+router.post('/', maintenance_controller_js_1.maintenanceController.create.bind(maintenance_controller_js_1.maintenanceController));
+router.get('/:id', maintenance_controller_js_1.maintenanceController.getById.bind(maintenance_controller_js_1.maintenanceController));
+router.put('/:id', maintenance_controller_js_1.maintenanceController.update.bind(maintenance_controller_js_1.maintenanceController));
+router.delete('/:id', maintenance_controller_js_1.maintenanceController.delete.bind(maintenance_controller_js_1.maintenanceController));
+exports.default = router;

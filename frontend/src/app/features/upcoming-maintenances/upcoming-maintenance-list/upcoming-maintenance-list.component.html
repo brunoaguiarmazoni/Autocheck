@@ -1,0 +1,81 @@
+<div class="mt-4">
+  <div class="flex justify-between items-center mb-6">
+    <h2 class="text-xl font-bold text-gray-800">Previsões de Manutenção</h2>
+    <button (click)="openNewForm()" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md shadow-sm transition-colors text-sm">
+      + Nova Previsão
+    </button>
+  </div>
+
+  <div *ngIf="error" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4" role="alert">
+    <span class="block sm:inline">{{ error }}</span>
+  </div>
+
+  <div *ngIf="loading" class="flex justify-center my-8">
+    <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600"></div>
+  </div>
+
+  <div *ngIf="!loading && maintenances.length === 0 && !error" class="bg-gray-50 rounded-lg p-8 text-center border border-gray-200 border-dashed">
+    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+    </svg>
+    <h3 class="mt-2 text-sm font-medium text-gray-900">Nenhuma previsão registrada</h3>
+    <p class="mt-1 text-sm text-gray-500">Comece registrando a primeira previsão para este veículo.</p>
+  </div>
+
+  <div *ngIf="!loading && maintenances.length > 0">
+    <div class="bg-white shadow-sm ring-1 ring-black ring-opacity-5 md:rounded-lg overflow-hidden">
+      <table class="min-w-full divide-y divide-gray-300">
+        <thead class="bg-gray-50">
+          <tr>
+            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Descrição</th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Data Prevista</th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Km Prevista</th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
+            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+              <span class="sr-only">Ações</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 bg-white">
+          <tr *ngFor="let m of maintenances">
+            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ m.description }}</td>
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ (m.targetDate | date:'dd/MM/yyyy') || '-' }}</td>
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ m.targetMileage ? (m.targetMileage | number) + ' km' : '-' }}</td>
+            <td class="whitespace-nowrap px-3 py-4 text-sm">
+              <ng-container *ngIf="m | maintenanceStatus:currentMileage as status">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
+                  [ngClass]="{
+                    'bg-red-100 text-red-800': status === 'atrasada',
+                    'bg-yellow-100 text-yellow-800': status === 'próxima',
+                    'bg-green-100 text-green-800': status === 'regular'
+                  }">
+                  {{ status | titlecase }}
+                </span>
+              </ng-container>
+            </td>
+            <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+              <button (click)="openEditForm(m)" class="text-blue-600 hover:text-blue-900 mr-3">Editar</button>
+              <button (click)="deleteMaintenance(m.id)" class="text-red-600 hover:text-red-900">Excluir</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Form -->
+<div *ngIf="showForm" class="fixed inset-0 z-10 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" (click)="closeForm()"></div>
+    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+    <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+      <app-upcoming-maintenance-form 
+        [vehicleId]="vehicleId" 
+        [maintenance]="editingMaintenance" 
+        (saved)="onFormSaved()" 
+        (cancelled)="closeForm()">
+      </app-upcoming-maintenance-form>
+    </div>
+  </div>
+</div>
