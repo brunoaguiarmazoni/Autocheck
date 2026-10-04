@@ -73,6 +73,19 @@ describe('Auth Routes (Integration Tests)', () => {
   });
 
   describe('POST /api/v1/auth/login', () => {
+    it('should return HTTP 400 Problem Details for invalid payload (Sad Path)', async () => {
+      const res = await request(app)
+        .post('/api/v1/auth/login')
+        .send({
+          email: 'invalid', // missing password and invalid email
+        });
+
+      expect(res.status).toBe(400);
+      expect(res.headers['content-type']).toContain('application/problem+json');
+      expect(res.body.title).toBe('Erro de validação');
+      expect(res.body.errors).toBeDefined();
+    });
+
     it('should authenticate user successfully and return JWT (Happy Path)', async () => {
       const hashedPassword = await authService.hashPassword('password123');
       vi.spyOn(userRepository, 'findByEmail').mockResolvedValue({

@@ -16,7 +16,7 @@ export class DashboardController {
         });
       }
 
-      const summary = await dashboardService.getSummary(vehicleId, userId);
+      const summary = await dashboardService.getSummary(vehicleId as string, userId);
       return res.status(200).json(summary);
     } catch (error: unknown) {
       if (error && typeof error === 'object' && 'status' in error && error.status === 404) {
@@ -24,7 +24,7 @@ export class DashboardController {
           type: 'https://example.com/problems/not-found',
           title: 'Não encontrado',
           status: 404,
-          detail: (error as Error).message,
+          detail: (error as any).message,
         });
       }
 

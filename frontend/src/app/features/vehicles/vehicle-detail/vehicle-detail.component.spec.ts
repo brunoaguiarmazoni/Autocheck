@@ -1,20 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { VehicleDetailComponent } from './vehicle-detail.component';
+import { describe, it, expect, vitest, beforeEach } from 'vitest';
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 describe('VehicleDetailComponent', () => {
   let component: VehicleDetailComponent;
-  let fixture: ComponentFixture<VehicleDetailComponent>;
+  let vehicleServiceSpy: any;
+  let routeSpy: any;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [VehicleDetailComponent]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(VehicleDetailComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    vehicleServiceSpy = {
+      getVehicleById: vitest.fn()
+    };
+    routeSpy = {
+      snapshot: { paramMap: { get: vitest.fn() } }
+    };
+    component = new VehicleDetailComponent(routeSpy, vehicleServiceSpy);
   });
 
   it('should create', () => {

@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures';
 
 test.describe('Maintenances', () => {
   // Configurando rota mockada para simular um veículo e suas manutenções

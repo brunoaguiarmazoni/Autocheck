@@ -1,11 +1,36 @@
-
-# Playwright
+# Dependências Node
 node_modules/
+npm-debug.log
+yarn-error.log
+
+# Build e Compilação
+dist/
+build/
+out-tsc/
+
+# Frontend (Angular)
+.angular/
+frontend/.angular/
+frontend/dist/
+
+# Backend
+backend/dist/
+
+# Testes e Cobertura
+coverage/
 /test-results/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
 
+# Arquivos de Ambiente (Segredos)
 .env
-    
+.env.*
+!.env.example
+
+# Arquivos de IDE e SO
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

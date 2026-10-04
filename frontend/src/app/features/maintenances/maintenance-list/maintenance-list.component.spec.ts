@@ -1,20 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MaintenanceListComponent } from './maintenance-list.component';
+import { describe, it, expect, vitest, beforeEach } from 'vitest';
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 describe('MaintenanceListComponent', () => {
   let component: MaintenanceListComponent;
-  let fixture: ComponentFixture<MaintenanceListComponent>;
+  let maintenanceServiceSpy: any;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [MaintenanceListComponent]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(MaintenanceListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    maintenanceServiceSpy = {
+      listByVehicle: vitest.fn()
+    };
+    component = new MaintenanceListComponent(maintenanceServiceSpy);
   });
 
   it('should create', () => {

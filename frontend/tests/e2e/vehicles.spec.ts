@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures';
 
 test.describe('Vehicles', () => {
   test('deve renderizar a tela de listagem de veículos', async ({ page }) => {

@@ -1,0 +1,28 @@
+FROM node:22-alpine AS build
+WORKDIR /app
+
+# Cache dependencies
+COPY package*.json ./
+RUN npm install
+
+# Build the project
+COPY . .
+RUN npm run build
+
+# Serve with nginx
+FROM nginx:alpine
+COPY --from=build /app/dist/frontend/browser /usr/share/nginx/html
+
+# Update nginx config to route all requests to index.html for Angular routing
+RUN echo 'server { \
+    listen 80; \
+    server_name localhost; \
+    root /usr/share/nginx/html; \
+    index index.html; \
+    location / { \
+        try_files $uri $uri/ /index.html; \
+    } \
+}' > /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

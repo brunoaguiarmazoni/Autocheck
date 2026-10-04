@@ -57,7 +57,7 @@ describe('Maintenance Routes (Integration Tests)', () => {
     }
     if (userId) {
       await prisma.vehicle.deleteMany({ where: { userId } });
-      await prisma.user.delete({ where: { id: userId } });
+      await prisma.user.deleteMany({ where: { id: userId } });
     }
     await prisma.$disconnect();
   });

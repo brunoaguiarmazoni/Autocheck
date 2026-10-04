@@ -1,0 +1,6 @@
+projectKey=autocheck
+serverUrl=http://localhost:9000
+serverVersion=26.9.0.129388
+dashboardUrl=http://localhost:9000/dashboard?id=autocheck
+ceTaskId=e390c191-3ca1-42d7-9aa4-184d39111dc3
+ceTaskUrl=http://localhost:9000/api/ce/task?id=e390c191-3ca1-42d7-9aa4-184d39111dc3

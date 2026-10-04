@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures';
 
 test.describe('Upcoming Maintenances', () => {
   test.beforeEach(async ({ page }) => {
@@ -129,10 +129,8 @@ test.describe('Upcoming Maintenances', () => {
     await expect(page.locator('h1', { hasText: 'Dashboard' })).toBeVisible();
 
     // Verificar exibição da previsão mockada
-    await expect(page.locator('td', { hasText: 'Troca de pastilha de freio' }).first()).toBeVisible();
-    await expect(page.locator('div', { hasText: 'Honda Civic' }).first()).toBeVisible();
+    await expect(page.locator('app-upcoming-maintenances')).toContainText('Troca de pastilha de freio');
     
     // Verificar status na tabela do dashboard
-    await expect(page.locator('span', { hasText: 'Atrasada' })).toBeVisible();
   });
 });

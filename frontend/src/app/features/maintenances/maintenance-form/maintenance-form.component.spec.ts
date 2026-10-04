@@ -1,20 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MaintenanceFormComponent } from './maintenance-form.component';
+import { FormBuilder } from '@angular/forms';
+import { describe, it, expect, vitest, beforeEach } from 'vitest';
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 describe('MaintenanceFormComponent', () => {
   let component: MaintenanceFormComponent;
-  let fixture: ComponentFixture<MaintenanceFormComponent>;
+  let maintenanceServiceSpy: any;
+  let formBuilder: FormBuilder;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [MaintenanceFormComponent]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(MaintenanceFormComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    maintenanceServiceSpy = {
+      create: vitest.fn(),
+      update: vitest.fn()
+    };
+    formBuilder = new FormBuilder();
+    component = new MaintenanceFormComponent(formBuilder, maintenanceServiceSpy);
   });
 
   it('should create', () => {
