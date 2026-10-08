@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { AuthResponse, LoginRequest, RegisterRequest, User } from '../models/user.model';
@@ -7,7 +8,7 @@ import { AuthResponse, LoginRequest, RegisterRequest, User } from '../models/use
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly API_URL = 'http://localhost:3001/api/v1/auth';
+  private readonly API_URL = `${environment.apiUrl}/auth`;
   private readonly TOKEN_KEY = 'autocheck_token';
   private readonly USER_KEY = 'autocheck_user';
 

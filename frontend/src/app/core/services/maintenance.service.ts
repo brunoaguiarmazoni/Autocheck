@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Maintenance, MaintenanceListResponse, CreateMaintenanceDTO, UpdateMaintenanceDTO } from '../../shared/models/maintenance.model';
@@ -7,7 +8,7 @@ import { Maintenance, MaintenanceListResponse, CreateMaintenanceDTO, UpdateMaint
   providedIn: 'root'
 })
 export class MaintenanceService {
-  private apiUrl = 'http://localhost:3001/api/v1';
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 

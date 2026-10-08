@@ -10,6 +10,8 @@ const vehicle_routes_js_1 = __importDefault(require("./routes/vehicle.routes.js"
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
+const global_upcoming_maintenance_routes_js_1 = __importDefault(require("./routes/global-upcoming-maintenance.routes.js"));
 app.use('/api/v1/auth', auth_routes_js_1.default);
 app.use('/api/v1/vehicles', vehicle_routes_js_1.default);
+app.use('/api/v1/upcoming-maintenances', global_upcoming_maintenance_routes_js_1.default);
 exports.default = app;

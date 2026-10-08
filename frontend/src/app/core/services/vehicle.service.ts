@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Vehicle, CreateVehicleDTO, UpdateVehicleDTO } from '../../shared/models/vehicle.model';
@@ -7,7 +8,7 @@ import { Vehicle, CreateVehicleDTO, UpdateVehicleDTO } from '../../shared/models
   providedIn: 'root'
 })
 export class VehicleService {
-  private readonly API_URL = 'http://localhost:3001/api/v1/vehicles';
+  private readonly API_URL = `${environment.apiUrl}/vehicles`;
 
   constructor(private http: HttpClient) {}
 
